@@ -111,9 +111,15 @@ Player::Player(PlayerOptions const& options) :
 }
 
 Player::~Player() {
-    foreach(shared_ptr<Bag> bag, bags_)
-        bag->close();
+    cleanup();
+}
 
+void Player::cleanup()
+{
+	foreach(shared_ptr<Bag> bag, bags_)
+        bag->close();
+	bags_.clear();
+	
     restoreTerminal();
 }
 
@@ -256,7 +262,7 @@ void Player::publish() {
         }
     }
 
-    ros::shutdown();
+    // ros::shutdown();
 }
 
 void Player::printTime()

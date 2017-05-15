@@ -165,6 +165,7 @@ public:
     ~Player();
 
     void publish();
+	void cleanup();
 
 private:
     int readCharFromStdin();
