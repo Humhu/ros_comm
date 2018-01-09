@@ -17,21 +17,21 @@ add_definitions(-D_FILE_OFFSET_BITS=64)
 include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 
 catkin_package(
-  LIBRARIES rosbag
+  LIBRARIES rosbag_lib
   INCLUDE_DIRS include
   CATKIN_DEPENDS rosbag_storage rosconsole roscpp topic_tools xmlrpcpp)
 
-add_library(rosbag
+add_library(rosbag_lib
   src/player.cpp
   src/recorder.cpp
   src/time_translator.cpp)
 
-target_link_libraries(rosbag ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(rosbag_lib ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   FILES_MATCHING PATTERN "*.h")
-install(TARGETS rosbag
+install(TARGETS rosbag_lib
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
